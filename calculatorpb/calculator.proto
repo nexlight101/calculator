@@ -19,10 +19,22 @@ message CalculatorResponse{
     int32 result=1;
 }
 
-service CalculatorService{
-    // Sum Takes in two numbers and returns the sum of them
-    rpc Calculator(CalculatorRequest) returns (CalculatorResponse) {};
+//Prime API messages 
+message PrimeNumberRequest {
+    int32 number=1;
 }
+message PrimeNumberResponse {
+    int32 result=1;
+}
+
+service CalculatorService{
+    // Calculator Takes in two numbers and returns the sum of them
+    rpc Calculator(CalculatorRequest) returns (CalculatorResponse) {};
+    // PrimeNUmberDecomposition rpc
+    rpc PrimeNumber(PrimeNumberRequest) returns (stream PrimeNumberResponse) {};
+}
+
+
 
 
 

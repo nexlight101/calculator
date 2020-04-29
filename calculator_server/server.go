@@ -24,7 +24,7 @@ func (*server) Calculator(ctx context.Context, req *calculatorpb.CalculatorReque
 }
 
 func main() {
-	fmt.Println("Hello from gRPC-Server")
+	fmt.Println("Hello from gRPC-Prime-Number-Server")
 
 	// Create listener
 	lis, err := net.Listen("tcp", "0.0.0.0:50051")
@@ -41,4 +41,36 @@ func main() {
 		log.Fatalf("Failed to serve: %v", err)
 	}
 
+}
+
+// PrimeNumber method retuns stream of prime factors
+func (*server) PrimeNumber(req *calculatorpb.PrimeNumberRequest, stream calculatorpb.CalculatorService_PrimeNumberServer) error {
+	fmt.Printf("PrimeNumber Request received in server %v", req)
+	resultX := toPrime(req.GetNumber())
+	fmt.Println(resultX)
+	for _, v := range resultX {
+		stream.Send(&calculatorpb.PrimeNumberResponse{
+			Result: v,
+		})
+	}
+	return nil
+}
+
+// toPrime breaks down a number into prime factors
+func toPrime(num int32) []int32 {
+	// implement algrorithm
+	primeX := make([]int32, 0, 20) // record all prime factors
+	pFactor := 2
+	n := int(num)
+	for {
+		if n <= 1 {
+			return primeX
+		}
+		if n%pFactor == 0 { // if pFactor evenly divides into n
+			primeX = append(primeX, int32(pFactor)) //add to the slice
+			n = n / pFactor                         //remove prime factor from n
+		} else {
+			pFactor++
+		}
+	}
 }

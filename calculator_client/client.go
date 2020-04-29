@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
 
 	"github.com/nexlight101/gRPC_course/calculator/calculatorpb"
@@ -27,7 +28,10 @@ func main() {
 	fmt.Printf("Client activated: %v\n", cs)
 	// send request to Greet unary client
 	// doUnary(c)
-	doSum(cs)
+	// doSum(cs)
+
+	// send a request to Prime number API
+	doPrime(cs)
 }
 
 // doSum request the sum of two numbers
@@ -44,4 +48,22 @@ func doSum(cs calculatorpb.CalculatorServiceClient) {
 		fmt.Printf("Error while calling Sum RPC: %v\n", err)
 	}
 	fmt.Printf("The sum of %d and %d is %d\n", req.Sum.Number1, req.Sum.Number2, res.GetResult())
+}
+
+func doPrime(cs calculatorpb.CalculatorServiceClient) {
+	fmt.Println("Sending the Prime Factor request to server")
+	req := &calculatorpb.PrimeNumberRequest{
+		Number: 120,
+	}
+	res, err := cs.PrimeNumber(context.Background(), req)
+	if err != nil {
+		log.Fatalf("Error while receiving from Prime RPC: %v\n", err)
+	}
+	for {
+		response, rErr := res.Recv()
+		if rErr == io.EOF {
+			break
+		}
+		fmt.Printf("A Prime Factor of %v is: %v\n", req.GetNumber(), response.GetResult())
+	}
 }

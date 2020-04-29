@@ -6,12 +6,11 @@ package calculatorpb
 import (
 	context "context"
 	fmt "fmt"
-	math "math"
-
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -150,10 +149,91 @@ func (m *CalculatorResponse) GetResult() int32 {
 	return 0
 }
 
+//Prime API messages
+type PrimeNumberRequest struct {
+	Number               int32    `protobuf:"varint,1,opt,name=number,proto3" json:"number,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PrimeNumberRequest) Reset()         { *m = PrimeNumberRequest{} }
+func (m *PrimeNumberRequest) String() string { return proto.CompactTextString(m) }
+func (*PrimeNumberRequest) ProtoMessage()    {}
+func (*PrimeNumberRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_87e717c78a24322a, []int{3}
+}
+
+func (m *PrimeNumberRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PrimeNumberRequest.Unmarshal(m, b)
+}
+func (m *PrimeNumberRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PrimeNumberRequest.Marshal(b, m, deterministic)
+}
+func (m *PrimeNumberRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PrimeNumberRequest.Merge(m, src)
+}
+func (m *PrimeNumberRequest) XXX_Size() int {
+	return xxx_messageInfo_PrimeNumberRequest.Size(m)
+}
+func (m *PrimeNumberRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PrimeNumberRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PrimeNumberRequest proto.InternalMessageInfo
+
+func (m *PrimeNumberRequest) GetNumber() int32 {
+	if m != nil {
+		return m.Number
+	}
+	return 0
+}
+
+type PrimeNumberResponse struct {
+	Result               int32    `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PrimeNumberResponse) Reset()         { *m = PrimeNumberResponse{} }
+func (m *PrimeNumberResponse) String() string { return proto.CompactTextString(m) }
+func (*PrimeNumberResponse) ProtoMessage()    {}
+func (*PrimeNumberResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_87e717c78a24322a, []int{4}
+}
+
+func (m *PrimeNumberResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PrimeNumberResponse.Unmarshal(m, b)
+}
+func (m *PrimeNumberResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PrimeNumberResponse.Marshal(b, m, deterministic)
+}
+func (m *PrimeNumberResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PrimeNumberResponse.Merge(m, src)
+}
+func (m *PrimeNumberResponse) XXX_Size() int {
+	return xxx_messageInfo_PrimeNumberResponse.Size(m)
+}
+func (m *PrimeNumberResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PrimeNumberResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PrimeNumberResponse proto.InternalMessageInfo
+
+func (m *PrimeNumberResponse) GetResult() int32 {
+	if m != nil {
+		return m.Result
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*Sum)(nil), "calculator.Sum")
 	proto.RegisterType((*CalculatorRequest)(nil), "calculator.CalculatorRequest")
 	proto.RegisterType((*CalculatorResponse)(nil), "calculator.CalculatorResponse")
+	proto.RegisterType((*PrimeNumberRequest)(nil), "calculator.PrimeNumberRequest")
+	proto.RegisterType((*PrimeNumberResponse)(nil), "calculator.PrimeNumberResponse")
 }
 
 func init() {
@@ -161,7 +241,7 @@ func init() {
 }
 
 var fileDescriptor_87e717c78a24322a = []byte{
-	// 191 bytes of a gzipped FileDescriptorProto
+	// 242 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4d, 0x4e, 0xcc, 0x49,
 	0x2e, 0xcd, 0x49, 0x2c, 0xc9, 0x2f, 0x2a, 0x48, 0xd2, 0x47, 0x70, 0xf4, 0x0a, 0x8a, 0xf2, 0x4b,
 	0xf2, 0x85, 0xb8, 0x10, 0x22, 0x4a, 0x96, 0x5c, 0xcc, 0xc1, 0xa5, 0xb9, 0x42, 0x12, 0x5c, 0xec,
@@ -170,10 +250,14 @@ var fileDescriptor_87e717c78a24322a = []byte{
 	0x6a, 0x61, 0x69, 0x6a, 0x71, 0x89, 0x90, 0x22, 0x17, 0x73, 0x71, 0x69, 0x2e, 0xd8, 0x10, 0x6e,
 	0x23, 0x7e, 0x3d, 0x24, 0xbb, 0x83, 0x4b, 0x73, 0x83, 0x40, 0x72, 0x4a, 0x3a, 0x5c, 0x42, 0xc8,
 	0xfa, 0x8a, 0x0b, 0xf2, 0xf3, 0x8a, 0x53, 0x85, 0xc4, 0xb8, 0xd8, 0x8a, 0x52, 0x8b, 0x4b, 0x73,
-	0x4a, 0xa0, 0x0e, 0x80, 0xf2, 0x8c, 0x92, 0x90, 0x6d, 0x09, 0x4e, 0x2d, 0x2a, 0xcb, 0x4c, 0x4e,
-	0x15, 0xf2, 0xe5, 0xe2, 0x42, 0x08, 0x0a, 0xc9, 0x22, 0x5b, 0x83, 0xe1, 0x24, 0x29, 0x39, 0x5c,
-	0xd2, 0x10, 0x9b, 0x95, 0x18, 0x9c, 0xf8, 0xa2, 0x78, 0x90, 0x43, 0x2c, 0x89, 0x0d, 0x1c, 0x4e,
-	0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x9e, 0xb6, 0xb7, 0xef, 0x48, 0x01, 0x00, 0x00,
+	0x4a, 0xa0, 0x0e, 0x80, 0xf2, 0x40, 0xaa, 0x03, 0x8a, 0x32, 0x73, 0x53, 0xfd, 0xc0, 0xb6, 0xc2,
+	0xac, 0x11, 0xe3, 0x62, 0x83, 0x38, 0x03, 0xa6, 0x1a, 0xc2, 0x53, 0xd2, 0xe5, 0x12, 0x46, 0x51,
+	0x8d, 0xdf, 0x70, 0xa3, 0x6d, 0x8c, 0xc8, 0x7e, 0x08, 0x4e, 0x2d, 0x2a, 0xcb, 0x4c, 0x4e, 0x15,
+	0xf2, 0xe5, 0xe2, 0x42, 0x08, 0x0a, 0xc9, 0x22, 0x7b, 0x02, 0xc3, 0xc3, 0x52, 0x72, 0xb8, 0xa4,
+	0x21, 0x56, 0x2b, 0x31, 0x08, 0x05, 0x71, 0x71, 0x23, 0xb9, 0x49, 0x08, 0x45, 0x03, 0xa6, 0xd7,
+	0xa4, 0xe4, 0x71, 0xca, 0xc3, 0x4c, 0x34, 0x60, 0x74, 0xe2, 0x8b, 0xe2, 0x41, 0x8e, 0xe3, 0x24,
+	0x36, 0x70, 0xcc, 0x1a, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0x8d, 0xdb, 0xc5, 0x0c, 0xfa, 0x01,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -188,8 +272,10 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CalculatorServiceClient interface {
-	// Sum Takes in two numbers and returns the sum of them
+	// Calculator Takes in two numbers and returns the sum of them
 	Calculator(ctx context.Context, in *CalculatorRequest, opts ...grpc.CallOption) (*CalculatorResponse, error)
+	// PrimeNUmberDecomposition rpc
+	PrimeNumber(ctx context.Context, in *PrimeNumberRequest, opts ...grpc.CallOption) (CalculatorService_PrimeNumberClient, error)
 }
 
 type calculatorServiceClient struct {
@@ -209,10 +295,44 @@ func (c *calculatorServiceClient) Calculator(ctx context.Context, in *Calculator
 	return out, nil
 }
 
+func (c *calculatorServiceClient) PrimeNumber(ctx context.Context, in *PrimeNumberRequest, opts ...grpc.CallOption) (CalculatorService_PrimeNumberClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CalculatorService_serviceDesc.Streams[0], "/calculator.CalculatorService/PrimeNumber", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &calculatorServicePrimeNumberClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type CalculatorService_PrimeNumberClient interface {
+	Recv() (*PrimeNumberResponse, error)
+	grpc.ClientStream
+}
+
+type calculatorServicePrimeNumberClient struct {
+	grpc.ClientStream
+}
+
+func (x *calculatorServicePrimeNumberClient) Recv() (*PrimeNumberResponse, error) {
+	m := new(PrimeNumberResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // CalculatorServiceServer is the server API for CalculatorService service.
 type CalculatorServiceServer interface {
-	// Sum Takes in two numbers and returns the sum of them
+	// Calculator Takes in two numbers and returns the sum of them
 	Calculator(context.Context, *CalculatorRequest) (*CalculatorResponse, error)
+	// PrimeNUmberDecomposition rpc
+	PrimeNumber(*PrimeNumberRequest, CalculatorService_PrimeNumberServer) error
 }
 
 // UnimplementedCalculatorServiceServer can be embedded to have forward compatible implementations.
@@ -221,6 +341,9 @@ type UnimplementedCalculatorServiceServer struct {
 
 func (*UnimplementedCalculatorServiceServer) Calculator(ctx context.Context, req *CalculatorRequest) (*CalculatorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Calculator not implemented")
+}
+func (*UnimplementedCalculatorServiceServer) PrimeNumber(req *PrimeNumberRequest, srv CalculatorService_PrimeNumberServer) error {
+	return status.Errorf(codes.Unimplemented, "method PrimeNumber not implemented")
 }
 
 func RegisterCalculatorServiceServer(s *grpc.Server, srv CalculatorServiceServer) {
@@ -245,6 +368,27 @@ func _CalculatorService_Calculator_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CalculatorService_PrimeNumber_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(PrimeNumberRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(CalculatorServiceServer).PrimeNumber(m, &calculatorServicePrimeNumberServer{stream})
+}
+
+type CalculatorService_PrimeNumberServer interface {
+	Send(*PrimeNumberResponse) error
+	grpc.ServerStream
+}
+
+type calculatorServicePrimeNumberServer struct {
+	grpc.ServerStream
+}
+
+func (x *calculatorServicePrimeNumberServer) Send(m *PrimeNumberResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 var _CalculatorService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "calculator.CalculatorService",
 	HandlerType: (*CalculatorServiceServer)(nil),
@@ -254,6 +398,12 @@ var _CalculatorService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _CalculatorService_Calculator_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "PrimeNumber",
+			Handler:       _CalculatorService_PrimeNumber_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "calculatorpb/calculator.proto",
 }
