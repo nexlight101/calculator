@@ -27,11 +27,24 @@ message PrimeNumberResponse {
     int32 result=1;
 }
 
+// Greatest Common Factor messages
+message GCFRequest {
+    int32 number1=1;
+    int32 number2=2;
+}
+
+message GCFResponse {
+    int32 result=1;
+}
+
 service CalculatorService{
     // Calculator Takes in two numbers and returns the sum of them
     rpc Calculator(CalculatorRequest) returns (CalculatorResponse) {};
     // PrimeNUmberDecomposition rpc
     rpc PrimeNumber(PrimeNumberRequest) returns (stream PrimeNumberResponse) {};
+    // Get the GCF(Greatest Common Factor) of 2 numbers
+    rpc GCF(GCFRequest) returns (stream GCFResponse){};
+
 }
 
 

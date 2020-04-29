@@ -31,7 +31,11 @@ func main() {
 	// doSum(cs)
 
 	// send a request to Prime number API
-	doPrime(cs)
+	// doPrime(cs)
+
+	//Send request to GCF API
+	doGCF(cs)
+
 }
 
 // doSum request the sum of two numbers
@@ -66,4 +70,27 @@ func doPrime(cs calculatorpb.CalculatorServiceClient) {
 		}
 		fmt.Printf("A Prime Factor of %v is: %v\n", req.GetNumber(), response.GetResult())
 	}
+}
+
+func doGCF(cs calculatorpb.CalculatorServiceClient) {
+	fmt.Println("Sending the GCF request to server")
+	req := &calculatorpb.GCFRequest{
+		Number1: 24,
+		Number2: 60,
+	}
+	res, err := cs.GCF(context.Background(), req)
+	if err != nil {
+		log.Fatalf("Error while receiving from GCF RPC: %v\n", err)
+	}
+	fmt.Printf("The Greatest Common Factor of %v and %v: ", req.GetNumber1(), req.GetNumber2())
+	product := 1
+	for {
+		response, rErr := res.Recv()
+		if rErr == io.EOF {
+			break
+		}
+		fmt.Printf(" %v ", response.GetResult())
+		product *= int(response.GetResult())
+	}
+	fmt.Println("=", product)
 }

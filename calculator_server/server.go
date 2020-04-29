@@ -74,3 +74,42 @@ func toPrime(num int32) []int32 {
 		}
 	}
 }
+
+// Greatest Common Factor generator
+func (*server) GCF(req *calculatorpb.GCFRequest, stream calculatorpb.CalculatorService_GCFServer) error {
+	fmt.Printf("GCF Request received in server %v \n", req)
+	// Get the numbers from the request
+	number1 := req.GetNumber1()
+	number2 := req.GetNumber2()
+	// Make empty slices
+	number1X := make([]int32, 0, 20)
+	number2X := make([]int32, 0, 20)
+	// Populate both slices
+	number1X = toPrime(number1)
+	number2X = toPrime(number2)
+	// Determine common factors
+	gcfX := make([]int32, 0, 20)
+	d := 0
+	for x, v := range number1X {
+		fmt.Printf("outer loop index %v value %v \n", x, v)
+		for i := d; i < len(number2X); {
+			if number2X[i] == v {
+				d = i + 1
+				gcfX = append(gcfX, v)
+				fmt.Printf("index %v ", i)
+				fmt.Printf("value %v \n", v)
+				break
+			}
+			i++
+		}
+	}
+	for _, g := range gcfX {
+		stream.Send(&calculatorpb.GCFResponse{
+			Result: g,
+		},
+		)
+		fmt.Println(g)
+	}
+
+	return nil
+}

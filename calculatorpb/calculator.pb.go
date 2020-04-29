@@ -228,12 +228,101 @@ func (m *PrimeNumberResponse) GetResult() int32 {
 	return 0
 }
 
+// Greatest Common Factor messages
+type GCFRequest struct {
+	Number1              int32    `protobuf:"varint,1,opt,name=number1,proto3" json:"number1,omitempty"`
+	Number2              int32    `protobuf:"varint,2,opt,name=number2,proto3" json:"number2,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GCFRequest) Reset()         { *m = GCFRequest{} }
+func (m *GCFRequest) String() string { return proto.CompactTextString(m) }
+func (*GCFRequest) ProtoMessage()    {}
+func (*GCFRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_87e717c78a24322a, []int{5}
+}
+
+func (m *GCFRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GCFRequest.Unmarshal(m, b)
+}
+func (m *GCFRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GCFRequest.Marshal(b, m, deterministic)
+}
+func (m *GCFRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GCFRequest.Merge(m, src)
+}
+func (m *GCFRequest) XXX_Size() int {
+	return xxx_messageInfo_GCFRequest.Size(m)
+}
+func (m *GCFRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GCFRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GCFRequest proto.InternalMessageInfo
+
+func (m *GCFRequest) GetNumber1() int32 {
+	if m != nil {
+		return m.Number1
+	}
+	return 0
+}
+
+func (m *GCFRequest) GetNumber2() int32 {
+	if m != nil {
+		return m.Number2
+	}
+	return 0
+}
+
+type GCFResponse struct {
+	Result               int32    `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GCFResponse) Reset()         { *m = GCFResponse{} }
+func (m *GCFResponse) String() string { return proto.CompactTextString(m) }
+func (*GCFResponse) ProtoMessage()    {}
+func (*GCFResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_87e717c78a24322a, []int{6}
+}
+
+func (m *GCFResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GCFResponse.Unmarshal(m, b)
+}
+func (m *GCFResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GCFResponse.Marshal(b, m, deterministic)
+}
+func (m *GCFResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GCFResponse.Merge(m, src)
+}
+func (m *GCFResponse) XXX_Size() int {
+	return xxx_messageInfo_GCFResponse.Size(m)
+}
+func (m *GCFResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GCFResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GCFResponse proto.InternalMessageInfo
+
+func (m *GCFResponse) GetResult() int32 {
+	if m != nil {
+		return m.Result
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*Sum)(nil), "calculator.Sum")
 	proto.RegisterType((*CalculatorRequest)(nil), "calculator.CalculatorRequest")
 	proto.RegisterType((*CalculatorResponse)(nil), "calculator.CalculatorResponse")
 	proto.RegisterType((*PrimeNumberRequest)(nil), "calculator.PrimeNumberRequest")
 	proto.RegisterType((*PrimeNumberResponse)(nil), "calculator.PrimeNumberResponse")
+	proto.RegisterType((*GCFRequest)(nil), "calculator.GCFRequest")
+	proto.RegisterType((*GCFResponse)(nil), "calculator.GCFResponse")
 }
 
 func init() {
@@ -241,23 +330,25 @@ func init() {
 }
 
 var fileDescriptor_87e717c78a24322a = []byte{
-	// 242 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4d, 0x4e, 0xcc, 0x49,
-	0x2e, 0xcd, 0x49, 0x2c, 0xc9, 0x2f, 0x2a, 0x48, 0xd2, 0x47, 0x70, 0xf4, 0x0a, 0x8a, 0xf2, 0x4b,
-	0xf2, 0x85, 0xb8, 0x10, 0x22, 0x4a, 0x96, 0x5c, 0xcc, 0xc1, 0xa5, 0xb9, 0x42, 0x12, 0x5c, 0xec,
-	0x79, 0xa5, 0xb9, 0x49, 0xa9, 0x45, 0x86, 0x12, 0x8c, 0x0a, 0x8c, 0x1a, 0xac, 0x41, 0x30, 0x2e,
-	0x42, 0xc6, 0x48, 0x82, 0x09, 0x59, 0xc6, 0x48, 0xc9, 0x8c, 0x4b, 0xd0, 0x19, 0x6e, 0x50, 0x50,
-	0x6a, 0x61, 0x69, 0x6a, 0x71, 0x89, 0x90, 0x22, 0x17, 0x73, 0x71, 0x69, 0x2e, 0xd8, 0x10, 0x6e,
-	0x23, 0x7e, 0x3d, 0x24, 0xbb, 0x83, 0x4b, 0x73, 0x83, 0x40, 0x72, 0x4a, 0x3a, 0x5c, 0x42, 0xc8,
-	0xfa, 0x8a, 0x0b, 0xf2, 0xf3, 0x8a, 0x53, 0x85, 0xc4, 0xb8, 0xd8, 0x8a, 0x52, 0x8b, 0x4b, 0x73,
-	0x4a, 0xa0, 0x0e, 0x80, 0xf2, 0x40, 0xaa, 0x03, 0x8a, 0x32, 0x73, 0x53, 0xfd, 0xc0, 0xb6, 0xc2,
-	0xac, 0x11, 0xe3, 0x62, 0x83, 0x38, 0x03, 0xa6, 0x1a, 0xc2, 0x53, 0xd2, 0xe5, 0x12, 0x46, 0x51,
-	0x8d, 0xdf, 0x70, 0xa3, 0x6d, 0x8c, 0xc8, 0x7e, 0x08, 0x4e, 0x2d, 0x2a, 0xcb, 0x4c, 0x4e, 0x15,
-	0xf2, 0xe5, 0xe2, 0x42, 0x08, 0x0a, 0xc9, 0x22, 0x7b, 0x02, 0xc3, 0xc3, 0x52, 0x72, 0xb8, 0xa4,
-	0x21, 0x56, 0x2b, 0x31, 0x08, 0x05, 0x71, 0x71, 0x23, 0xb9, 0x49, 0x08, 0x45, 0x03, 0xa6, 0xd7,
-	0xa4, 0xe4, 0x71, 0xca, 0xc3, 0x4c, 0x34, 0x60, 0x74, 0xe2, 0x8b, 0xe2, 0x41, 0x8e, 0xe3, 0x24,
-	0x36, 0x70, 0xcc, 0x1a, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0x8d, 0xdb, 0xc5, 0x0c, 0xfa, 0x01,
-	0x00, 0x00,
+	// 280 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x52, 0x4d, 0x4b, 0xc3, 0x40,
+	0x10, 0x35, 0x06, 0x23, 0x4c, 0x44, 0x71, 0x84, 0x18, 0x02, 0xf5, 0x63, 0x41, 0xf0, 0xa0, 0x55,
+	0x23, 0x08, 0x7a, 0x12, 0x03, 0xed, 0x49, 0x91, 0xe4, 0xe6, 0xad, 0x09, 0x7b, 0x28, 0x64, 0x9b,
+	0xb8, 0x9b, 0xf5, 0x87, 0xfb, 0x0b, 0xa4, 0x49, 0xd7, 0x9d, 0x12, 0xa2, 0xd0, 0xe3, 0x9b, 0xf7,
+	0xe6, 0xbd, 0xdd, 0xc7, 0xc0, 0xa8, 0x98, 0x95, 0x85, 0x2e, 0x67, 0x4d, 0x25, 0xeb, 0xfc, 0xc6,
+	0x82, 0x71, 0x2d, 0xab, 0xa6, 0x42, 0xb0, 0x13, 0xf6, 0x08, 0x6e, 0xa6, 0x05, 0x86, 0xb0, 0xbb,
+	0xd0, 0x22, 0xe7, 0xf2, 0x2e, 0x74, 0xce, 0x9c, 0xcb, 0x9d, 0xd4, 0x40, 0xcb, 0xc4, 0xe1, 0x36,
+	0x65, 0x62, 0xf6, 0x00, 0x87, 0xc9, 0xaf, 0x51, 0xca, 0x3f, 0x35, 0x57, 0x0d, 0x9e, 0x83, 0xab,
+	0xb4, 0x68, 0x4d, 0xfc, 0xf8, 0x60, 0x4c, 0xb2, 0x33, 0x2d, 0xd2, 0x25, 0xc7, 0xae, 0x00, 0xe9,
+	0x9e, 0xaa, 0xab, 0x85, 0xe2, 0x18, 0x80, 0x27, 0xb9, 0xd2, 0x65, 0xb3, 0x7a, 0xc0, 0x0a, 0x2d,
+	0xd5, 0xef, 0x72, 0x2e, 0xf8, 0x5b, 0x9b, 0x6a, 0x62, 0x02, 0xf0, 0xba, 0x67, 0x18, 0x75, 0x87,
+	0xd8, 0x35, 0x1c, 0xad, 0xa9, 0xff, 0x31, 0x7f, 0x06, 0x98, 0x26, 0x13, 0x63, 0xba, 0x49, 0x09,
+	0x17, 0xe0, 0xb7, 0x0e, 0x7f, 0x07, 0xc5, 0xdf, 0x0e, 0x2d, 0x2b, 0xe3, 0xf2, 0x6b, 0x5e, 0x70,
+	0x7c, 0x05, 0xb0, 0x43, 0x1c, 0xd1, 0xb6, 0x7a, 0xcd, 0x46, 0x27, 0x43, 0x74, 0x17, 0xcd, 0xb6,
+	0x30, 0x05, 0x9f, 0x7c, 0x1e, 0xd7, 0x16, 0xfa, 0x1d, 0x46, 0xa7, 0x83, 0xbc, 0x71, 0xbc, 0x75,
+	0xf0, 0x09, 0xdc, 0x69, 0x32, 0xc1, 0x80, 0x6a, 0x6d, 0x65, 0xd1, 0x71, 0x6f, 0x6e, 0x77, 0x5f,
+	0xf6, 0x3f, 0xf6, 0xe8, 0x21, 0xe6, 0x5e, 0x7b, 0x7e, 0xf7, 0x3f, 0x01, 0x00, 0x00, 0xff, 0xff,
+	0x11, 0xc6, 0x11, 0x0b, 0x9f, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -276,6 +367,8 @@ type CalculatorServiceClient interface {
 	Calculator(ctx context.Context, in *CalculatorRequest, opts ...grpc.CallOption) (*CalculatorResponse, error)
 	// PrimeNUmberDecomposition rpc
 	PrimeNumber(ctx context.Context, in *PrimeNumberRequest, opts ...grpc.CallOption) (CalculatorService_PrimeNumberClient, error)
+	// Get the GCF(Greatest Common Factor) of 2 numbers
+	GCF(ctx context.Context, in *GCFRequest, opts ...grpc.CallOption) (CalculatorService_GCFClient, error)
 }
 
 type calculatorServiceClient struct {
@@ -327,12 +420,46 @@ func (x *calculatorServicePrimeNumberClient) Recv() (*PrimeNumberResponse, error
 	return m, nil
 }
 
+func (c *calculatorServiceClient) GCF(ctx context.Context, in *GCFRequest, opts ...grpc.CallOption) (CalculatorService_GCFClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CalculatorService_serviceDesc.Streams[1], "/calculator.CalculatorService/GCF", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &calculatorServiceGCFClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type CalculatorService_GCFClient interface {
+	Recv() (*GCFResponse, error)
+	grpc.ClientStream
+}
+
+type calculatorServiceGCFClient struct {
+	grpc.ClientStream
+}
+
+func (x *calculatorServiceGCFClient) Recv() (*GCFResponse, error) {
+	m := new(GCFResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // CalculatorServiceServer is the server API for CalculatorService service.
 type CalculatorServiceServer interface {
 	// Calculator Takes in two numbers and returns the sum of them
 	Calculator(context.Context, *CalculatorRequest) (*CalculatorResponse, error)
 	// PrimeNUmberDecomposition rpc
 	PrimeNumber(*PrimeNumberRequest, CalculatorService_PrimeNumberServer) error
+	// Get the GCF(Greatest Common Factor) of 2 numbers
+	GCF(*GCFRequest, CalculatorService_GCFServer) error
 }
 
 // UnimplementedCalculatorServiceServer can be embedded to have forward compatible implementations.
@@ -344,6 +471,9 @@ func (*UnimplementedCalculatorServiceServer) Calculator(ctx context.Context, req
 }
 func (*UnimplementedCalculatorServiceServer) PrimeNumber(req *PrimeNumberRequest, srv CalculatorService_PrimeNumberServer) error {
 	return status.Errorf(codes.Unimplemented, "method PrimeNumber not implemented")
+}
+func (*UnimplementedCalculatorServiceServer) GCF(req *GCFRequest, srv CalculatorService_GCFServer) error {
+	return status.Errorf(codes.Unimplemented, "method GCF not implemented")
 }
 
 func RegisterCalculatorServiceServer(s *grpc.Server, srv CalculatorServiceServer) {
@@ -389,6 +519,27 @@ func (x *calculatorServicePrimeNumberServer) Send(m *PrimeNumberResponse) error 
 	return x.ServerStream.SendMsg(m)
 }
 
+func _CalculatorService_GCF_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GCFRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(CalculatorServiceServer).GCF(m, &calculatorServiceGCFServer{stream})
+}
+
+type CalculatorService_GCFServer interface {
+	Send(*GCFResponse) error
+	grpc.ServerStream
+}
+
+type calculatorServiceGCFServer struct {
+	grpc.ServerStream
+}
+
+func (x *calculatorServiceGCFServer) Send(m *GCFResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 var _CalculatorService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "calculator.CalculatorService",
 	HandlerType: (*CalculatorServiceServer)(nil),
@@ -402,6 +553,11 @@ var _CalculatorService_serviceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "PrimeNumber",
 			Handler:       _CalculatorService_PrimeNumber_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "GCF",
+			Handler:       _CalculatorService_GCF_Handler,
 			ServerStreams: true,
 		},
 	},
