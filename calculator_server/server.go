@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"strconv"
+	"strings"
 
 	"github.com/nexlight101/gRPC_course/calculator/calculatorpb"
 	"google.golang.org/grpc"
@@ -24,7 +26,7 @@ func (*server) Calculator(ctx context.Context, req *calculatorpb.CalculatorReque
 }
 
 func main() {
-	fmt.Println("Hello from gRPC-Prime-Number-Server")
+	fmt.Println("Hello from gRPC-Server")
 
 	// Create listener
 	lis, err := net.Listen("tcp", "0.0.0.0:50051")
@@ -90,14 +92,11 @@ func (*server) GCF(req *calculatorpb.GCFRequest, stream calculatorpb.CalculatorS
 	// Determine common factors
 	gcfX := make([]int32, 0, 20)
 	d := 0
-	for x, v := range number1X {
-		fmt.Printf("outer loop index %v value %v \n", x, v)
+	for _, v := range number1X {
 		for i := d; i < len(number2X); {
 			if number2X[i] == v {
 				d = i + 1
 				gcfX = append(gcfX, v)
-				fmt.Printf("index %v ", i)
-				fmt.Printf("value %v \n", v)
 				break
 			}
 			i++
@@ -108,7 +107,41 @@ func (*server) GCF(req *calculatorpb.GCFRequest, stream calculatorpb.CalculatorS
 			Result: g,
 		},
 		)
-		fmt.Println(g)
+	}
+
+	return nil
+}
+
+// BreakWord splits up a sentance into words
+func (*server) BreakWord(req *calculatorpb.BreakWordRequest, stream calculatorpb.CalculatorService_BreakWordServer) error {
+	fmt.Printf("BreakWord Request received in server %v \n", req)
+	// Split up the words in the requested sentance
+	words := strings.Split(req.GetWord(), " ")
+	// Returing a response word for every word in the sentance
+	for _, word := range words {
+		// Send back the correct type
+		stream.Send(&calculatorpb.BreakWordResponse{
+			Result: word,
+		})
+	}
+	return nil
+}
+
+// Letters splits a word up into letters
+func (*server) Letters(req *calculatorpb.LettersRequest, stream calculatorpb.CalculatorService_LettersServer) error {
+	fmt.Printf("Letters Request received in server %v \n", req)
+	// populate
+	word := req.GetWord()
+	// Split word up into single letters with a loop
+	for _, v := range word {
+		result := &calculatorpb.LettersResponse{
+			Result: strconv.QuoteRune(v),
+		}
+		// send response back to client
+		sErr := stream.Send(result)
+		if sErr != nil {
+			log.Fatalf("failed to send stream: %v\n", sErr)
+		}
 	}
 
 	return nil

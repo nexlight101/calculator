@@ -34,7 +34,13 @@ func main() {
 	// doPrime(cs)
 
 	//Send request to GCF API
-	doGCF(cs)
+	// doGCF(cs)
+
+	// Send a sentance to Split
+	// doBWord(cs)
+
+	// send a word to split
+	doLetters(cs)
 
 }
 
@@ -93,4 +99,44 @@ func doGCF(cs calculatorpb.CalculatorServiceClient) {
 		product *= int(response.GetResult())
 	}
 	fmt.Println("=", product)
+}
+
+// doBWord Splits a sentance into single words
+func doBWord(cs calculatorpb.CalculatorServiceClient) {
+	req := &calculatorpb.BreakWordRequest{
+		Word: "Hello there you turd",
+	}
+	fmt.Printf("Sending the sentance '%v' to split request to server\n", req.GetWord())
+	res, err := cs.BreakWord(context.Background(), req)
+
+	if err != nil {
+		log.Fatalf("Cannot communicate with RPC %v\n", err)
+	}
+	for {
+		response, rErr := res.Recv()
+		if rErr == io.EOF {
+			break
+		}
+		fmt.Printf("  '%v'  ", response.GetResult())
+	}
+
+}
+
+// function doLetters() calls a letters API
+func doLetters(cs calculatorpb.CalculatorServiceClient) {
+	req := &calculatorpb.LettersRequest{
+		Word: "Howdy there partner?",
+	}
+	fmt.Printf("Sending the sentance '%v' to split into letters request to server\n", req.GetWord())
+	res, err := cs.Letters(context.Background(), req)
+	if err != nil {
+		log.Fatalf("Could not reveive response: %v\n", err)
+	}
+	for {
+		response, rErr := res.Recv()
+		if rErr == io.EOF {
+			break
+		}
+		fmt.Printf(" %v ", response.GetResult())
+	}
 }

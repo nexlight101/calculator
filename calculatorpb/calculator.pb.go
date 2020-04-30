@@ -315,6 +315,163 @@ func (m *GCFResponse) GetResult() int32 {
 	return 0
 }
 
+type BreakWordRequest struct {
+	Word                 string   `protobuf:"bytes,1,opt,name=word,proto3" json:"word,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *BreakWordRequest) Reset()         { *m = BreakWordRequest{} }
+func (m *BreakWordRequest) String() string { return proto.CompactTextString(m) }
+func (*BreakWordRequest) ProtoMessage()    {}
+func (*BreakWordRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_87e717c78a24322a, []int{7}
+}
+
+func (m *BreakWordRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BreakWordRequest.Unmarshal(m, b)
+}
+func (m *BreakWordRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BreakWordRequest.Marshal(b, m, deterministic)
+}
+func (m *BreakWordRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BreakWordRequest.Merge(m, src)
+}
+func (m *BreakWordRequest) XXX_Size() int {
+	return xxx_messageInfo_BreakWordRequest.Size(m)
+}
+func (m *BreakWordRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_BreakWordRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BreakWordRequest proto.InternalMessageInfo
+
+func (m *BreakWordRequest) GetWord() string {
+	if m != nil {
+		return m.Word
+	}
+	return ""
+}
+
+type BreakWordResponse struct {
+	Result               string   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *BreakWordResponse) Reset()         { *m = BreakWordResponse{} }
+func (m *BreakWordResponse) String() string { return proto.CompactTextString(m) }
+func (*BreakWordResponse) ProtoMessage()    {}
+func (*BreakWordResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_87e717c78a24322a, []int{8}
+}
+
+func (m *BreakWordResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BreakWordResponse.Unmarshal(m, b)
+}
+func (m *BreakWordResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BreakWordResponse.Marshal(b, m, deterministic)
+}
+func (m *BreakWordResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BreakWordResponse.Merge(m, src)
+}
+func (m *BreakWordResponse) XXX_Size() int {
+	return xxx_messageInfo_BreakWordResponse.Size(m)
+}
+func (m *BreakWordResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_BreakWordResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BreakWordResponse proto.InternalMessageInfo
+
+func (m *BreakWordResponse) GetResult() string {
+	if m != nil {
+		return m.Result
+	}
+	return ""
+}
+
+// Letters messages
+type LettersRequest struct {
+	Word                 string   `protobuf:"bytes,1,opt,name=word,proto3" json:"word,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *LettersRequest) Reset()         { *m = LettersRequest{} }
+func (m *LettersRequest) String() string { return proto.CompactTextString(m) }
+func (*LettersRequest) ProtoMessage()    {}
+func (*LettersRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_87e717c78a24322a, []int{9}
+}
+
+func (m *LettersRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_LettersRequest.Unmarshal(m, b)
+}
+func (m *LettersRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_LettersRequest.Marshal(b, m, deterministic)
+}
+func (m *LettersRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LettersRequest.Merge(m, src)
+}
+func (m *LettersRequest) XXX_Size() int {
+	return xxx_messageInfo_LettersRequest.Size(m)
+}
+func (m *LettersRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_LettersRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_LettersRequest proto.InternalMessageInfo
+
+func (m *LettersRequest) GetWord() string {
+	if m != nil {
+		return m.Word
+	}
+	return ""
+}
+
+type LettersResponse struct {
+	Result               string   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *LettersResponse) Reset()         { *m = LettersResponse{} }
+func (m *LettersResponse) String() string { return proto.CompactTextString(m) }
+func (*LettersResponse) ProtoMessage()    {}
+func (*LettersResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_87e717c78a24322a, []int{10}
+}
+
+func (m *LettersResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_LettersResponse.Unmarshal(m, b)
+}
+func (m *LettersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_LettersResponse.Marshal(b, m, deterministic)
+}
+func (m *LettersResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LettersResponse.Merge(m, src)
+}
+func (m *LettersResponse) XXX_Size() int {
+	return xxx_messageInfo_LettersResponse.Size(m)
+}
+func (m *LettersResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_LettersResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_LettersResponse proto.InternalMessageInfo
+
+func (m *LettersResponse) GetResult() string {
+	if m != nil {
+		return m.Result
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*Sum)(nil), "calculator.Sum")
 	proto.RegisterType((*CalculatorRequest)(nil), "calculator.CalculatorRequest")
@@ -323,6 +480,10 @@ func init() {
 	proto.RegisterType((*PrimeNumberResponse)(nil), "calculator.PrimeNumberResponse")
 	proto.RegisterType((*GCFRequest)(nil), "calculator.GCFRequest")
 	proto.RegisterType((*GCFResponse)(nil), "calculator.GCFResponse")
+	proto.RegisterType((*BreakWordRequest)(nil), "calculator.BreakWordRequest")
+	proto.RegisterType((*BreakWordResponse)(nil), "calculator.BreakWordResponse")
+	proto.RegisterType((*LettersRequest)(nil), "calculator.LettersRequest")
+	proto.RegisterType((*LettersResponse)(nil), "calculator.LettersResponse")
 }
 
 func init() {
@@ -330,25 +491,30 @@ func init() {
 }
 
 var fileDescriptor_87e717c78a24322a = []byte{
-	// 280 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x52, 0x4d, 0x4b, 0xc3, 0x40,
-	0x10, 0x35, 0x06, 0x23, 0x4c, 0x44, 0x71, 0x84, 0x18, 0x02, 0xf5, 0x63, 0x41, 0xf0, 0xa0, 0x55,
-	0x23, 0x08, 0x7a, 0x12, 0x03, 0xed, 0x49, 0x91, 0xe4, 0xe6, 0xad, 0x09, 0x7b, 0x28, 0x64, 0x9b,
-	0xb8, 0x9b, 0xf5, 0x87, 0xfb, 0x0b, 0xa4, 0x49, 0xd7, 0x9d, 0x12, 0xa2, 0xd0, 0xe3, 0x9b, 0xf7,
-	0xe6, 0xbd, 0xdd, 0xc7, 0xc0, 0xa8, 0x98, 0x95, 0x85, 0x2e, 0x67, 0x4d, 0x25, 0xeb, 0xfc, 0xc6,
-	0x82, 0x71, 0x2d, 0xab, 0xa6, 0x42, 0xb0, 0x13, 0xf6, 0x08, 0x6e, 0xa6, 0x05, 0x86, 0xb0, 0xbb,
-	0xd0, 0x22, 0xe7, 0xf2, 0x2e, 0x74, 0xce, 0x9c, 0xcb, 0x9d, 0xd4, 0x40, 0xcb, 0xc4, 0xe1, 0x36,
-	0x65, 0x62, 0xf6, 0x00, 0x87, 0xc9, 0xaf, 0x51, 0xca, 0x3f, 0x35, 0x57, 0x0d, 0x9e, 0x83, 0xab,
-	0xb4, 0x68, 0x4d, 0xfc, 0xf8, 0x60, 0x4c, 0xb2, 0x33, 0x2d, 0xd2, 0x25, 0xc7, 0xae, 0x00, 0xe9,
-	0x9e, 0xaa, 0xab, 0x85, 0xe2, 0x18, 0x80, 0x27, 0xb9, 0xd2, 0x65, 0xb3, 0x7a, 0xc0, 0x0a, 0x2d,
-	0xd5, 0xef, 0x72, 0x2e, 0xf8, 0x5b, 0x9b, 0x6a, 0x62, 0x02, 0xf0, 0xba, 0x67, 0x18, 0x75, 0x87,
-	0xd8, 0x35, 0x1c, 0xad, 0xa9, 0xff, 0x31, 0x7f, 0x06, 0x98, 0x26, 0x13, 0x63, 0xba, 0x49, 0x09,
-	0x17, 0xe0, 0xb7, 0x0e, 0x7f, 0x07, 0xc5, 0xdf, 0x0e, 0x2d, 0x2b, 0xe3, 0xf2, 0x6b, 0x5e, 0x70,
-	0x7c, 0x05, 0xb0, 0x43, 0x1c, 0xd1, 0xb6, 0x7a, 0xcd, 0x46, 0x27, 0x43, 0x74, 0x17, 0xcd, 0xb6,
-	0x30, 0x05, 0x9f, 0x7c, 0x1e, 0xd7, 0x16, 0xfa, 0x1d, 0x46, 0xa7, 0x83, 0xbc, 0x71, 0xbc, 0x75,
-	0xf0, 0x09, 0xdc, 0x69, 0x32, 0xc1, 0x80, 0x6a, 0x6d, 0x65, 0xd1, 0x71, 0x6f, 0x6e, 0x77, 0x5f,
-	0xf6, 0x3f, 0xf6, 0xe8, 0x21, 0xe6, 0x5e, 0x7b, 0x7e, 0xf7, 0x3f, 0x01, 0x00, 0x00, 0xff, 0xff,
-	0x11, 0xc6, 0x11, 0x0b, 0x9f, 0x02, 0x00, 0x00,
+	// 364 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x93, 0x4b, 0x4f, 0xfa, 0x40,
+	0x14, 0xc5, 0xff, 0xfc, 0xab, 0x10, 0x0e, 0x06, 0xe4, 0x9a, 0x20, 0xa9, 0xe2, 0xa3, 0x51, 0xa3,
+	0x51, 0x51, 0x6b, 0x62, 0xa2, 0x2b, 0x03, 0x09, 0x6c, 0xd0, 0x98, 0xb2, 0x30, 0x71, 0xc7, 0x63,
+	0x16, 0x44, 0x4a, 0x71, 0xda, 0xd1, 0xaf, 0xe0, 0xc7, 0x36, 0x14, 0xda, 0xb9, 0xc8, 0x2b, 0x71,
+	0xd7, 0x3b, 0xe7, 0xcc, 0xef, 0x34, 0xf7, 0x64, 0x50, 0xea, 0xb4, 0xfa, 0x1d, 0xd5, 0x6f, 0x05,
+	0x9e, 0x1c, 0xb6, 0xaf, 0xf4, 0x50, 0x1e, 0x4a, 0x2f, 0xf0, 0x08, 0xfa, 0xc4, 0xba, 0x87, 0xd1,
+	0x54, 0x2e, 0x15, 0x91, 0x1a, 0x28, 0xb7, 0x2d, 0xe4, 0x4d, 0x31, 0x71, 0x90, 0x38, 0x5d, 0x77,
+	0xa2, 0x51, 0x2b, 0x76, 0xf1, 0x3f, 0x57, 0x6c, 0xeb, 0x0e, 0xf9, 0x6a, 0x0c, 0x72, 0xc4, 0x87,
+	0x12, 0x7e, 0x40, 0x87, 0x30, 0x7c, 0xe5, 0x86, 0x90, 0x8c, 0x9d, 0x2b, 0xb3, 0xec, 0xa6, 0x72,
+	0x9d, 0x91, 0x66, 0x5d, 0x80, 0xf8, 0x3d, 0x7f, 0xe8, 0x0d, 0x7c, 0x41, 0x05, 0x24, 0xa5, 0xf0,
+	0x55, 0x3f, 0x98, 0xfc, 0xc0, 0x64, 0x1a, 0xb9, 0x5f, 0x64, 0xcf, 0x15, 0xcf, 0x61, 0x6a, 0x14,
+	0x53, 0x40, 0x72, 0xfc, 0x1b, 0x91, 0x7b, 0x3c, 0x59, 0x97, 0xd8, 0x9a, 0x72, 0xaf, 0x80, 0x3f,
+	0x02, 0xf5, 0x6a, 0x2d, 0x82, 0xfe, 0x65, 0x09, 0xc7, 0xc8, 0x84, 0x84, 0x15, 0x41, 0x27, 0xd8,
+	0xac, 0x48, 0xd1, 0x7a, 0x7f, 0xf5, 0x64, 0x37, 0x8a, 0x23, 0xac, 0x7d, 0x79, 0xb2, 0x1b, 0x3a,
+	0xd3, 0x4e, 0xf8, 0x6d, 0x9d, 0x23, 0xcf, 0x7c, 0x73, 0xa1, 0xe9, 0x18, 0x7a, 0x84, 0x6c, 0x43,
+	0x04, 0x81, 0x90, 0xfe, 0x32, 0xe4, 0x19, 0x72, 0xb1, 0x6b, 0x39, 0xd0, 0xfe, 0x36, 0x78, 0xa5,
+	0x4d, 0x21, 0x3f, 0x7b, 0x1d, 0x41, 0x4f, 0x80, 0x3e, 0xa4, 0x12, 0xef, 0x74, 0xa6, 0x7f, 0x73,
+	0x6f, 0x91, 0x3c, 0x8e, 0xb6, 0xfe, 0x91, 0x83, 0x0c, 0xab, 0x88, 0xa6, 0x2e, 0xcc, 0x36, 0x6d,
+	0xee, 0x2f, 0xd4, 0x23, 0xe2, 0x75, 0x82, 0x1e, 0x60, 0xd4, 0xab, 0x35, 0x2a, 0x70, 0xaf, 0x2e,
+	0xd6, 0xdc, 0x9e, 0x39, 0x67, 0x77, 0x1b, 0x48, 0xc7, 0x2b, 0xa7, 0x5d, 0xee, 0xfc, 0xdd, 0x98,
+	0x59, 0x5a, 0xa0, 0x32, 0x5a, 0x0d, 0xa9, 0xc9, 0xb6, 0xc9, 0xe4, 0xee, 0xe9, 0xa2, 0xcc, 0x9d,
+	0xb9, 0x9a, 0xe6, 0x54, 0xb2, 0x6f, 0x1b, 0xfc, 0x11, 0xb7, 0x93, 0xe1, 0xd3, 0xbd, 0xfd, 0x09,
+	0x00, 0x00, 0xff, 0xff, 0xbc, 0x5d, 0xb4, 0x16, 0xdb, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -369,6 +535,10 @@ type CalculatorServiceClient interface {
 	PrimeNumber(ctx context.Context, in *PrimeNumberRequest, opts ...grpc.CallOption) (CalculatorService_PrimeNumberClient, error)
 	// Get the GCF(Greatest Common Factor) of 2 numbers
 	GCF(ctx context.Context, in *GCFRequest, opts ...grpc.CallOption) (CalculatorService_GCFClient, error)
+	// break a sentance appart into words
+	BreakWord(ctx context.Context, in *BreakWordRequest, opts ...grpc.CallOption) (CalculatorService_BreakWordClient, error)
+	// letters
+	Letters(ctx context.Context, in *LettersRequest, opts ...grpc.CallOption) (CalculatorService_LettersClient, error)
 }
 
 type calculatorServiceClient struct {
@@ -452,6 +622,70 @@ func (x *calculatorServiceGCFClient) Recv() (*GCFResponse, error) {
 	return m, nil
 }
 
+func (c *calculatorServiceClient) BreakWord(ctx context.Context, in *BreakWordRequest, opts ...grpc.CallOption) (CalculatorService_BreakWordClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CalculatorService_serviceDesc.Streams[2], "/calculator.CalculatorService/BreakWord", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &calculatorServiceBreakWordClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type CalculatorService_BreakWordClient interface {
+	Recv() (*BreakWordResponse, error)
+	grpc.ClientStream
+}
+
+type calculatorServiceBreakWordClient struct {
+	grpc.ClientStream
+}
+
+func (x *calculatorServiceBreakWordClient) Recv() (*BreakWordResponse, error) {
+	m := new(BreakWordResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *calculatorServiceClient) Letters(ctx context.Context, in *LettersRequest, opts ...grpc.CallOption) (CalculatorService_LettersClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CalculatorService_serviceDesc.Streams[3], "/calculator.CalculatorService/Letters", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &calculatorServiceLettersClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type CalculatorService_LettersClient interface {
+	Recv() (*LettersResponse, error)
+	grpc.ClientStream
+}
+
+type calculatorServiceLettersClient struct {
+	grpc.ClientStream
+}
+
+func (x *calculatorServiceLettersClient) Recv() (*LettersResponse, error) {
+	m := new(LettersResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // CalculatorServiceServer is the server API for CalculatorService service.
 type CalculatorServiceServer interface {
 	// Calculator Takes in two numbers and returns the sum of them
@@ -460,6 +694,10 @@ type CalculatorServiceServer interface {
 	PrimeNumber(*PrimeNumberRequest, CalculatorService_PrimeNumberServer) error
 	// Get the GCF(Greatest Common Factor) of 2 numbers
 	GCF(*GCFRequest, CalculatorService_GCFServer) error
+	// break a sentance appart into words
+	BreakWord(*BreakWordRequest, CalculatorService_BreakWordServer) error
+	// letters
+	Letters(*LettersRequest, CalculatorService_LettersServer) error
 }
 
 // UnimplementedCalculatorServiceServer can be embedded to have forward compatible implementations.
@@ -474,6 +712,12 @@ func (*UnimplementedCalculatorServiceServer) PrimeNumber(req *PrimeNumberRequest
 }
 func (*UnimplementedCalculatorServiceServer) GCF(req *GCFRequest, srv CalculatorService_GCFServer) error {
 	return status.Errorf(codes.Unimplemented, "method GCF not implemented")
+}
+func (*UnimplementedCalculatorServiceServer) BreakWord(req *BreakWordRequest, srv CalculatorService_BreakWordServer) error {
+	return status.Errorf(codes.Unimplemented, "method BreakWord not implemented")
+}
+func (*UnimplementedCalculatorServiceServer) Letters(req *LettersRequest, srv CalculatorService_LettersServer) error {
+	return status.Errorf(codes.Unimplemented, "method Letters not implemented")
 }
 
 func RegisterCalculatorServiceServer(s *grpc.Server, srv CalculatorServiceServer) {
@@ -540,6 +784,48 @@ func (x *calculatorServiceGCFServer) Send(m *GCFResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _CalculatorService_BreakWord_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(BreakWordRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(CalculatorServiceServer).BreakWord(m, &calculatorServiceBreakWordServer{stream})
+}
+
+type CalculatorService_BreakWordServer interface {
+	Send(*BreakWordResponse) error
+	grpc.ServerStream
+}
+
+type calculatorServiceBreakWordServer struct {
+	grpc.ServerStream
+}
+
+func (x *calculatorServiceBreakWordServer) Send(m *BreakWordResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _CalculatorService_Letters_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(LettersRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(CalculatorServiceServer).Letters(m, &calculatorServiceLettersServer{stream})
+}
+
+type CalculatorService_LettersServer interface {
+	Send(*LettersResponse) error
+	grpc.ServerStream
+}
+
+type calculatorServiceLettersServer struct {
+	grpc.ServerStream
+}
+
+func (x *calculatorServiceLettersServer) Send(m *LettersResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 var _CalculatorService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "calculator.CalculatorService",
 	HandlerType: (*CalculatorServiceServer)(nil),
@@ -558,6 +844,16 @@ var _CalculatorService_serviceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "GCF",
 			Handler:       _CalculatorService_GCF_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "BreakWord",
+			Handler:       _CalculatorService_BreakWord_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "Letters",
+			Handler:       _CalculatorService_Letters_Handler,
 			ServerStreams: true,
 		},
 	},
