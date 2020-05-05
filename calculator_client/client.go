@@ -42,8 +42,11 @@ func main() {
 	// send a word to split
 	// doLetters(cs)
 
-	// doAverage sends a stream of numbers to the server
-	doAverage(cs)
+	// doAverage sends a stream of numbers to the server to average
+	// doAverage(cs)
+
+	// doMultiply sends a stream of numbers to the server to multiply
+	doMultiply(cs)
 
 }
 
@@ -165,4 +168,40 @@ func doAverage(cs calculatorpb.CalculatorServiceClient) {
 		log.Fatalf("Could not get response: %v\n", err)
 	}
 	fmt.Printf("The avarage of 1, 2, 3, 4: %.2f", res.GetResult())
+}
+
+// doMultiply streams numbers to multiply
+func doMultiply(cs calculatorpb.CalculatorServiceClient) {
+
+	reqX := []*calculatorpb.MultiplierRequest{
+		{
+			Number: 6,
+		},
+		{
+			Number: 5,
+		},
+		{
+			Number: 4,
+		},
+		{
+			Number: 7,
+		},
+	}
+	client, err := cs.Multiplier(context.Background())
+	if err != nil {
+		log.Fatalf("Could not communicate with server : %v\n", err)
+	}
+	fmt.Println("Mutlipling:")
+	for _, v := range reqX {
+		sErr := client.Send(v)
+		if sErr != nil {
+			log.Fatalf("Could not send streaming request to the server : %v\n", sErr)
+		}
+		fmt.Printf(" %v ", v)
+	}
+	response, rErr := client.CloseAndRecv()
+	if rErr != nil {
+		log.Fatalf("Did not receive response from server: %v\n", rErr)
+	}
+	fmt.Printf("\nThe product is: %v", response.GetResult())
 }
