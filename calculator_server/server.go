@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
 	"net"
 	"strconv"
@@ -144,5 +145,35 @@ func (*server) Letters(req *calculatorpb.LettersRequest, stream calculatorpb.Cal
 		}
 	}
 
+	return nil
+}
+
+// ComputeAverage receives stream responds with an average
+func (*server) ComputeAverage(stream calculatorpb.CalculatorService_ComputeAverageServer) error {
+	fmt.Println("ComputeAverage stream request received in server")
+	count := 0
+	sum := 0
+	var average float64
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatalf("Could not receive stream from server")
+		}
+		sum += int(req.GetNumber())
+		count++
+	}
+
+	average = float64(sum) / float64(count)
+	fmt.Printf("average: %.1f is sum: %.1f / count: %.1f", average, float64(sum), float64(count))
+	res := &calculatorpb.ComputeAverageResponse{
+		Result: average,
+	}
+	sErr := stream.SendAndClose(res)
+	if sErr != nil {
+		log.Fatalf("Could not respond to streaming client: %v\n", sErr)
+	}
 	return nil
 }

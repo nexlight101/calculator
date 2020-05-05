@@ -40,7 +40,10 @@ func main() {
 	// doBWord(cs)
 
 	// send a word to split
-	doLetters(cs)
+	// doLetters(cs)
+
+	// doAverage sends a stream of numbers to the server
+	doAverage(cs)
 
 }
 
@@ -139,4 +142,27 @@ func doLetters(cs calculatorpb.CalculatorServiceClient) {
 		}
 		fmt.Printf(" %v ", response.GetResult())
 	}
+}
+
+func doAverage(cs calculatorpb.CalculatorServiceClient) {
+	fmt.Println("Sending numbers to server")
+	cl, err := cs.ComputeAverage(context.Background())
+	if err != nil {
+		log.Fatalf("Could not get response: %v\n", err)
+	}
+	for i := 1; i < 5; i++ {
+		req := &calculatorpb.ComputeAverageRequest{
+			Number: int32(i),
+		}
+		err1 := cl.Send(req)
+		fmt.Println(req.GetNumber())
+		if err1 != nil {
+			log.Fatalf("Could not get response: %v\n", err)
+		}
+	}
+	res, rErr := cl.CloseAndRecv()
+	if rErr != nil {
+		log.Fatalf("Could not get response: %v\n", err)
+	}
+	fmt.Printf("The avarage of 1, 2, 3, 4: %.2f", res.GetResult())
 }

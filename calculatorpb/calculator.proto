@@ -55,6 +55,15 @@ message LettersResponse {
     string result=1;    
 }
 
+// ComputeAverage messages
+message ComputeAverageRequest {
+    int32 number=1;
+}
+message ComputeAverageResponse {
+    double result=1;
+}
+
+
 service CalculatorService{
     // Calculator Takes in two numbers and returns the sum of them
     rpc Calculator(CalculatorRequest) returns (CalculatorResponse) {};
@@ -66,6 +75,8 @@ service CalculatorService{
     rpc BreakWord(BreakWordRequest) returns (stream BreakWordResponse){};
     // letters 
     rpc Letters(LettersRequest) returns (stream LettersResponse){};
+    // Average client streams numbers and reseives an average 
+    rpc ComputeAverage(stream ComputeAverageRequest) returns (ComputeAverageResponse){};
 
 }
 
