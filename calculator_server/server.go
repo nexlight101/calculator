@@ -177,3 +177,26 @@ func (*server) ComputeAverage(stream calculatorpb.CalculatorService_ComputeAvera
 	}
 	return nil
 }
+
+// Multiplier takes in a stream of numbers and respones with a product
+func (*server) Multiplier(stream calculatorpb.CalculatorService_MultiplierServer) error {
+	fmt.Println("Multieplier stream request received in server")
+	var product int32 = 1
+	for {
+		req, rErr := stream.Recv()
+		if rErr == io.EOF {
+			break
+		}
+		if rErr != nil {
+			log.Fatalf("Could not receive from streaming client: %v\n", rErr)
+		}
+		product *= req.GetNumber()
+	}
+	sErr := stream.SendAndClose(&calculatorpb.MultiplierResponse{
+		Result: product,
+	})
+	if sErr != nil {
+		log.Fatalf("Could not send to streaming client: %v\n", sErr)
+	}
+	return nil
+}

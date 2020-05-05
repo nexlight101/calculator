@@ -63,6 +63,14 @@ message ComputeAverageResponse {
     double result=1;
 }
 
+// Multiplier messages
+message MultiplierRequest {
+    int32 number=1;
+}
+message MultiplierResponse {
+    int32 result=1;
+}
+
 
 service CalculatorService{
     // Calculator Takes in two numbers and returns the sum of them
@@ -77,6 +85,8 @@ service CalculatorService{
     rpc Letters(LettersRequest) returns (stream LettersResponse){};
     // Average client streams numbers and reseives an average 
     rpc ComputeAverage(stream ComputeAverageRequest) returns (ComputeAverageResponse){};
+    // Multiplier multiplies a stream of numbers
+    rpc Multiplier(stream MultiplierRequest) returns (MultiplierResponse) {};
 
 }
 
