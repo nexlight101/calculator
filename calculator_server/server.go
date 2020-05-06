@@ -200,3 +200,32 @@ func (*server) Multiplier(stream calculatorpb.CalculatorService_MultiplierServer
 	}
 	return nil
 }
+
+// FindMaximum Returns a stream of maximums of request stream
+func (*server) FindMaximum(stream calculatorpb.CalculatorService_FindMaximumServer) error {
+	fmt.Println("FindMaximum stream request received in server")
+	var maximum int32
+	for {
+		req, sErr := stream.Recv()
+		if sErr == io.EOF {
+			break
+		}
+		if sErr != nil {
+			log.Fatalf("Could not receive stream request: %v\n", sErr)
+		}
+		// Find a maximum
+		if req.GetNumber() > maximum { // if the maximum changes send it back
+			maximum = req.GetNumber()
+
+			// send a response
+			sErr := stream.Send(&calculatorpb.FindMaximumResponse{
+				Result: maximum,
+			})
+			if sErr != nil {
+				log.Fatalf("Could not Send a stream response: %v\n", sErr)
+				return sErr
+			}
+		}
+	}
+	return nil
+}

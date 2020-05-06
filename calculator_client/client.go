@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"time"
 
 	"github.com/nexlight101/gRPC_course/calculator/calculatorpb"
 	"google.golang.org/grpc"
@@ -46,7 +47,10 @@ func main() {
 	// doAverage(cs)
 
 	// doMultiply sends a stream of numbers to the server to multiply
-	doMultiply(cs)
+	// doMultiply(cs)
+
+	// doFindMaximum sends a stream of numbers and receives a stream of maximums
+	doFindMaximum(cs)
 
 }
 
@@ -204,4 +208,54 @@ func doMultiply(cs calculatorpb.CalculatorServiceClient) {
 		log.Fatalf("Did not receive response from server: %v\n", rErr)
 	}
 	fmt.Printf("\nThe product is: %v", response.GetResult())
+}
+
+// doFindMaximum receives stream numbers and sends back a stream of maximums
+
+func doFindMaximum(cs calculatorpb.CalculatorServiceClient) {
+	fmt.Println("Sending numbers to server")
+	waitc := make(chan struct{})
+	// Create a stream from client
+	stream, sErr := cs.FindMaximum(context.Background())
+	if sErr == io.EOF {
+		close(waitc)
+	}
+	if sErr != nil {
+		log.Fatalf("Could not connect to stream: %v\n", sErr)
+	}
+
+	// Send a bunch of numbers
+	go func() {
+		numbersX := []int32{1, 5, 3, 6, 2, 20}
+		for _, v := range numbersX {
+			fmt.Printf("Sending number: %d ", v)
+			stream.Send(&calculatorpb.FindMaximumRequest{
+				Number: v,
+			})
+			time.Sleep(1000 * time.Millisecond)
+		}
+		cErr := stream.CloseSend()
+		if cErr != nil {
+			log.Fatalf("Could not close stream: %v\n", cErr)
+		}
+	}()
+
+	// Receive a bunch of maximums
+	go func() {
+		for {
+			res, rErr := stream.Recv()
+			if rErr == io.EOF {
+				break
+			}
+			if rErr != nil {
+				log.Fatalf("Could not receive stream: %v\n", rErr)
+				break
+			}
+			fmt.Printf(" Maximum = %d\n", res.GetResult())
+		}
+		close(waitc)
+	}()
+
+	// Block channel till done
+	<-waitc
 }
