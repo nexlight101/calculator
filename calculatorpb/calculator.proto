@@ -71,6 +71,15 @@ message MultiplierResponse {
     int32 result=1;
 }
 
+//FindMaximum messages
+message FindMaximumRequest {
+    int32 number=1;
+}
+message FindMaximumResponse {
+    int32 result=1;
+}
+
+
 
 service CalculatorService{
     // Calculator Takes in two numbers and returns the sum of them
@@ -87,7 +96,8 @@ service CalculatorService{
     rpc ComputeAverage(stream ComputeAverageRequest) returns (ComputeAverageResponse){};
     // Multiplier multiplies a stream of numbers
     rpc Multiplier(stream MultiplierRequest) returns (MultiplierResponse) {};
-
+    // FindMaximum BiDi streaming API
+    rpc FindMaximum(stream FindMaximumRequest) returns (stream FindMaximumResponse) {};
 }
 
 
