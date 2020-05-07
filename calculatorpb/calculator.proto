@@ -79,6 +79,13 @@ message FindMaximumResponse {
     int32 result=1;
 }
 
+//SquareRoot messages 
+message SquareRootRequest {
+    int32 number =1;
+}
+message SquareRootResponse {
+    double number_root =1;
+}
 
 
 service CalculatorService{
@@ -98,6 +105,10 @@ service CalculatorService{
     rpc Multiplier(stream MultiplierRequest) returns (MultiplierResponse) {};
     // FindMaximum BiDi streaming API
     rpc FindMaximum(stream FindMaximumRequest) returns (stream FindMaximumResponse) {};
+    // SquareRoot unary API
+    // This RPC will throw an error when the sent number is negative
+    // The error being sent is of type INVALID_AGRUMENT
+    rpc SquareRoot(SquareRootRequest) returns (SquareRootResponse) {};  
 }
 
 
