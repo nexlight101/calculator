@@ -5,12 +5,15 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math"
 	"net"
 	"strconv"
 	"strings"
 
 	"github.com/nexlight101/gRPC_course/calculator/calculatorpb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 // Create a server type
@@ -228,4 +231,20 @@ func (*server) FindMaximum(stream calculatorpb.CalculatorService_FindMaximumServ
 		}
 	}
 	return nil
+}
+
+// SquareRoot reveives a number from the client and retruns the squareroot of that number
+func (*server) SquareRoot(ctx context.Context, req *calculatorpb.SquareRootRequest) (*calculatorpb.SquareRootResponse, error) {
+	fmt.Println("Received Squareroot RPC")
+	// Get the number requested by the client
+	number := req.GetNumber()
+	if number < 0 {
+		return nil, status.Errorf(codes.InvalidArgument, fmt.Sprintf("Received a negative number: %v", number))
+	}
+	// Find the squareroot of number
+	sqrt := math.Sqrt(float64(number))
+	// Respond with sqaureroot
+	return &calculatorpb.SquareRootResponse{
+		NumberRoot: sqrt,
+	}, nil
 }

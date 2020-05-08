@@ -9,6 +9,8 @@ import (
 
 	"github.com/nexlight101/gRPC_course/calculator/calculatorpb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 func main() {
@@ -50,7 +52,10 @@ func main() {
 	// doMultiply(cs)
 
 	// doFindMaximum sends a stream of numbers and receives a stream of maximums
-	doFindMaximum(cs)
+	// doFindMaximum(cs)
+
+	// doSquareRoot Sends a number to the server and receives a squareroot
+	doSquareRoot(cs)
 
 }
 
@@ -258,4 +263,41 @@ func doFindMaximum(cs calculatorpb.CalculatorServiceClient) {
 
 	// Block channel till done
 	<-waitc
+}
+
+// doSquareRoot Sends a number to squareroot API
+func doSquareRoot(cs calculatorpb.CalculatorServiceClient) {
+	number := int32(16)
+
+	// correct call
+	doErrorCall(cs, number)
+
+	// incorrect call
+	number = -2
+	doErrorCall(cs, number)
+}
+
+// doErrorCall does error checking
+func doErrorCall(cs calculatorpb.CalculatorServiceClient, n int32) {
+	req := &calculatorpb.SquareRootRequest{
+		Number: n,
+	}
+
+	res, sErr := cs.SquareRoot(context.Background(), req)
+	if sErr != nil {
+		respErr, ok := status.FromError(sErr)
+		if ok {
+			// Actual error from gRPC (user error)
+			fmt.Printf("Error message from server: %v\n", respErr.Message())
+			fmt.Println(respErr.Code())
+			if respErr.Code() == codes.InvalidArgument {
+				fmt.Println("We probably sent a negative number!")
+				return
+			}
+		} else {
+			log.Fatalf("Big Error calling SquareRoot: %v\n", sErr)
+			return
+		}
+	}
+	fmt.Printf("Result of sqaure root of %v: %v\n", n, res.GetNumberRoot())
 }
